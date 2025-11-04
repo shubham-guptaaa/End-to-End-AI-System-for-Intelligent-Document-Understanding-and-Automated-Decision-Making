@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Resume AI Analyzer</title>
+    <link rel="stylesheet" href="/static/css/resume.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Resume AI Analyzer</h1>
+    <p class="subtitle">Upload a resume to extract all details + heatmap.</p>
+
+    <label>Upload Resume (PDF/Image)</label>
+    <input type="file" id="file" accept=".pdf,.png,.jpg,.jpeg">
+
+    <button onclick="askResumeAI()">Extract Resume Details</button>
+
+    <p id="loading" class="loader hidden">Analyzing resume... please wait.</p>
+
+    <div id="results" class="result-box hidden">
+
+        <p><b>Name:</b> <span id="name"></span></p>
+        <p><b>Email:</b> <span id="email"></span></p>
+        <p><b>Phone:</b> <span id="phone"></span></p>
+        <p><b>Skills:</b> <span id="skills"></span></p>
+        <p><b>Education:</b> <span id="education"></span></p>
+        <p><b>Experience:</b> <span id="experience"></span></p>
+
+        <hr style="margin: 20px 0;">
+
+        <h3>Extraction Confidence Visualization</h3>
+        <p style="color:#666; font-size:14px;">
+            The heatmap shows confidence scores for each extracted field:
+            <br>
+            <span style="color:#2cba00">■</span> High confidence (80-100%)
+            <span style="color:#a3ff00">■</span> Good confidence (60-80%)
+            <span style="color:#fff400">■</span> Medium confidence (40-60%)
+            <span style="color:#ffa700">■</span> Low confidence (20-40%)
+            <span style="color:#ff0000">■</span> Very low confidence (0-20%)
+        </p>
+
+        <div class="heatmap-container" style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-top: 15px; text-align: center;">
+            <img id="heatmap-img" 
+                 style="width: 100%; 
+                        max-width: 1000px;
+                        display: none;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                        border-radius: 4px;"
+                 alt="Confidence Heatmap"
+                 onerror="console.error('Heatmap failed to load');"
+            />
+    </div>
+
+</div>
+
+<script src="/static/js/resume.js"></script>
+
+</body>
+</html>
